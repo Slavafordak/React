@@ -31,4 +31,4 @@ function App() {
 }
 
 export default App;
-//у меня есть страница с переходом <Route path="/products/:id" element={<ProductPage products={products} />}/>, мне нужно чтобы при клике на торговую карточку, данные были перенесы на другую страницу 
+//у меня есть страница с переходом <Route path="/products/:id" element={<ProductPage products={products} />}/>, мне нужно чтобы при клике на торговую карточку, данsdfsdfsdfные были перенесы на другую страницу 
