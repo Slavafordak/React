@@ -1,42 +1,22 @@
-import React from 'react'
+import React,{useState} from 'react'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Row, Col } from 'react-bootstrap';
 import MultiSelect from './Dropdown';
-import NumberInput from './Input';
+import ProductFilter from './Input';
 import ProductCard from './ProductCard';
 import { Link } from 'react-router-dom';
-
+import { products } from './ConstData';
 
 const Test = () => {
-  const products = [
-    {
-      id:1,
-      photo:"https://example.com/photo.jpg",
-  name:"Земельный участок",
-  message:"Определение победителя, состоялся",
-  tradeType:"Аренда и продажа земельных участков",
-  area:"1000 кв.м",
-  description:"Очень красивый участок с видом на горы",
-  cadastralNumber:"123456789",
-  landUseType:"Личное подсобное хозяйство",
-  startingPrice:"500000",
-  finalPrice:"700000",
-  biddingEnd:"23 апреля 2023 г. 18:00",
-    },
-    {
-      id: 2,
-      name: 'Product 2',
-      description: 'Description of product 2',
-      photo: 'https://example.com/product2.jpg',
-    },
-    {
-      id: 3,
-      name: 'Product 3',
-      description: 'Description of product 3',
-      photo: 'https://example.com/product3.jpg',
-    },
-  ];
-  return (
+  
+  
+  const [filteredProducts, setFilteredProducts] = useState(products);
+
+  const handleFilter = (filtered) => {
+    setFilteredProducts(filtered);
+  };
+
+    return (
     <>
     <div className='container'>
       <div className='row'>
@@ -46,8 +26,8 @@ const Test = () => {
       Реестер лотов
     </label>
     <form className="col-12 col-lg-12 mb-3 mb-lg-0 me-lg-3 pt-3" role="search">
-        <input type="search" className="form-control form-control-dark text-bg-dark" placeholder="Поиск по названию..." aria-label="Search" />
-      </form>
+     <ProductFilter products={products} onFilter={handleFilter}/>
+     </form>
       <label className="text-white-50 mt-3 fs-5">
       Субъект местонахождения имущества
     </label>
@@ -77,7 +57,8 @@ const Test = () => {
     </label>
       </td>
       <form className="col-12 col-lg-12 mb-3 mb-lg-0 me-lg-3 pt-0">
-    <NumberInput/>
+    
+    
       </form>
       <td>
       <label className="text-white-50 mt-3 fs-5">
@@ -85,7 +66,7 @@ const Test = () => {
     </label>
       </td>
       <form className="col-12 col-lg-12 mb-3 mb-lg-0 me-lg-3 pt-0">
-    <NumberInput/>
+    <ProductFilter/>
       </form>
     <label className="text-white-50 mt-3 fs-5">
       Форма собственности
@@ -97,11 +78,9 @@ const Test = () => {
         </div>
         <div className='col-md-7 ml-52 pt-36'>
           <div className='row'>
-            {products.map((product) => (
+            {filteredProducts.map((product) => (
               <div className='col-md-12 ' key={product.id}>
-              <Link to={`/products/:id`}>
                 <ProductCard {...product} />
-              </Link>
               </div>
             ))}
           </div>

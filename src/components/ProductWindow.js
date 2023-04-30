@@ -1,21 +1,28 @@
 import React from "react";
 import { Row, Col, Image, Button } from "react-bootstrap";
+import { products } from './ConstData';
+import { useLocation } from "react-router-dom";
 
-const ProductPage = ({ id, photo, name, message, tradeType, area, description, cadastralNumber, landUseType, startingPrice, finalPrice, biddingEnd }) => {
+const ProductPage = () => {
 	
+  const location = useLocation();
+  console.log(location);
+  const product = products[0]
+
   return (
+    
     <div>
       <Row>
         <Col md={7}>
-          <Image src={photo} alt={name} fluid />
+          <Image src={product.photo} alt={product.name} fluid />
         </Col>
         <Col md={5} className="bg-dark text-white-50">
-          <h2>{name}</h2>
-          <p>{description}</p>
+          <h2>{product.name}</h2>
+          <p>{product.description}</p>
           <ul >
-            <li>Размер: {area}</li>
-            <li>Расположение: {landUseType}</li>
-            <li>Цена: {finalPrice} рублей</li>
+            <li>Размер: {product.area}</li>
+            <li>Расположение: {product.landUseType}</li>
+            <li>Цена: {product.finalPrice} рублей</li>
           </ul>
           <Button variant="primary">Купить</Button>
         </Col>

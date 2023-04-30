@@ -21,7 +21,7 @@ function App() {
         <Route path="/" element={<Middle/>}/>
         <Route path="Login" element={<Login/>}/>
         <Route path="Registration" element={<RegistrationForm/>}/>
-        <Route path="/products/:id" element={<ProductPage products={products} />}/>
+        <Route path="/products/:id" element={<ProductPage/>} />
       </Routes>
     </BrowserRouter>
     <Footer/>
@@ -31,4 +31,3 @@ function App() {
 }
 
 export default App;
-//у меня есть страница с переходом <Route path="/products/:id" element={<ProductPage products={products} />}/>, мне нужно чтобы при клике на торговую карточку, данные были перенесы на другую страницу 
